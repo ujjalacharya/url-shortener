@@ -28,4 +28,15 @@ Router.post("/url", async (req, res) => {
   }
 });
 
+Router.get("/:url", async (req, res)=> {
+ const foundUrl = await Url.findOne({short_url: req.params.url});
+ console.log(foundUrl)
+ if(foundUrl){
+  return res.status(200).json({success: true, message: foundUrl.url});
+ }else{
+  res.status(400).json({ success: false, message: "Bad request" });
+ }
+})
+
+
 module.exports = Router;
