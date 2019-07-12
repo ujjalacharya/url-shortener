@@ -7,7 +7,10 @@ require("dotenv").config();
 
 dbConnection();
 
-app.use("/", router);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/api/", router);
 
 app.listen(PORT, () => {
   console.log(`Server running at ${PORT}`);
