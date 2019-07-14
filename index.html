@@ -43,7 +43,7 @@
           return response.json();
         })
         .then(resp => {
-          if (resp.success == "true") {
+          if (resp.success == true) {
             console.log(resp);
             document.getElementById("url").value = "";
             document.getElementById("shortened-url").innerHTML +=
