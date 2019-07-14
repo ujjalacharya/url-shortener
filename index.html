@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Enter the URL here</h1>
+      <form>
+        <input type="text" id="url" placeholder="Enter the URL here..." />
+        <button onclick="submiturl(event)">Submit</button>
+      </form>
+     <span><h4>Shortened URL will go here: </h4></span> <h4 id="shortened-url"></h4>
+    </div>
+  </body>
+
+  <script>
+    function submiturl(e) {
+      e.preventDefault();
+      let url = document.getElementById("url").value;
+      return fetch(`http://localhost:3000/api/url`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ url })
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(resp => {
+          console.log(resp);
+          document.getElementById("url").value = "";
+          document.getElementById("shortened-url").innerHTML = resp.foundUrl.short_url;
+        })
+        .catch(err => {
+          return false;
+        });
+    }
+  </script>
+</html>

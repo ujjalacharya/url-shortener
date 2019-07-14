@@ -3,7 +3,7 @@ const Url = require("../models/Url");
 const validUrl = require("valid-url");
 const ids = require("shortid");
 
-Router.post("/url", async (req, res) => {
+Router.post("/api/url", async (req, res) => {
   const { url } = req.body;
 
   if (validUrl.isUri(url)) {
@@ -30,7 +30,6 @@ Router.post("/url", async (req, res) => {
 
 Router.get("/:url", async (req, res)=> {
  const foundUrl = await Url.findOne({short_url: req.params.url});
- console.log(foundUrl)
  if(foundUrl){
   return res.status(200).json({success: true, message: foundUrl.url});
  }else{
