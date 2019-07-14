@@ -28,14 +28,14 @@ Router.post("/api/url", async (req, res) => {
   }
 });
 
-Router.get("/:url", async (req, res)=> {
- const foundUrl = await Url.findOne({short_url: req.params.url});
- if(foundUrl){
-  return res.status(200).json({success: true, message: foundUrl.url});
- }else{
-  res.status(400).json({ success: false, message: "Bad request" });
- }
-})
-
+Router.get("/:url", async (req, res) => {
+  const foundUrl = await Url.findOne({ short_url: req.params.url });
+  if (foundUrl) {
+    // return res.status(200).json({success: true, message: foundUrl.url});
+    res.redirect(foundUrl.url);
+  } else {
+    res.status(400).json({ success: false, message: "Bad request" });
+  }
+});
 
 module.exports = Router;
