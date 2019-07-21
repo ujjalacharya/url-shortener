@@ -1,1 +1,1 @@
-## Url shortner API
+## Url shortener API
