@@ -9,6 +9,12 @@
       * {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
+      nav {
+        display: flex;
+        justify-content: center;
+        background-color: #434343;
+        color: #ffff;
+      }
       .container {
         display: flex;
         justify-content: center;
@@ -36,8 +42,11 @@
     </style>
   </head>
   <body>
+    <nav>
+      <h1>URL Shortener</h1>
+    </nav>
+
     <div class="container">
-      <h1>Enter the URL here</h1>
       <form>
         <input type="text" id="url" placeholder="Enter the URL here..." />
         <button onclick="submiturl(event)">Submit</button>
